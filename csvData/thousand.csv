@@ -1,0 +1,77 @@
+Car;Time;kmPerH;WhPerKm;Date;Temp;TAvg;Notes
+Kia Ceed - PHEV;10:00;100;test;test;test;test;25 min food break removed
+Nio ES8 - 100 kWh 6 seater;10:00;100;test;test;test;test;Battery swap at Lier
+Mercedes EQS - 450+;10:00;100;test;test;test;test;
+Tesla Model 3 - Performance;10:00;100;test;test;test;test;
+BMW i4 - eDrive40;10:00;100;test;test;test;test;
+Tesla Model 3 - LR 82 kWh;10:00;100;test;test;test;test;
+Audi e-tron - GT;10:00;100;test;test;test;test;Norway night, some rain
+Mercedes EQE - 43 AMG;10:00;100;test;test;test;test;
+BMW i4 - M50;10:00;100;test;test;test;test;
+Porsche Taycan - Cross Turismo 4;10:00;100;test;test;test;test;
+Tesla Model Y - LR;10:00;100;test;test;test;test;
+Tesla Model Y - Performance;10:00;100;test;test;test;test;
+BMW i4 - M50;10:00;100;test;test;test;test;
+Mercedes EQS - 580 4Matic;10:00;100;test;test;test;test;
+Tesla Model S - LR Raven;10:00;100;test;test;test;test;Norway
+Tesla Model Y - LR;10:00;100;test;test;test;test;
+Kia EV6 - 77 kWh AWD;10:00;100;test;test;test;test;
+Tesla Model 3 - SR+ MIC;10:00;100;test;test;test;test;
+Hyundai Ioniq5 - AWD;10:00;100;test;test;test;test;Norway, wet half of route
+Skoda Enyaq - Coupé RS;10:00;100;test;test;test;test;
+VW ID5 - GTX;10:00;100;test;test;test;test;
+Tesla Model 3 - SR+ 60 kWh LFP;10:00;100;test;test;test;test;Norway, quite windy
+BMW i4 - M50;10:00;100;test;test;test;test;Sweden, wet end
+BMW iX - xDrive50;10:00;100;test;test;test;test;Sweden
+Kia EV6 - 77 kWh RWD;10:00;100;test;test;test;test;
+Audi e-tron - 55;10:00;100;test;test;test;test;
+BMW iX - xDrive40;10:00;100;test;test;test;test;
+Mercedes EQA - 250;10:00;100;test;test;test;test;
+Skoda Enyaq - iV 80;10:00;100;test;test;test;test;
+Tesla Model X - LR Raven;10:00;100;test;test;test;test;150 kW max
+VW ID3 - 82 kWh;10:00;100;test;test;test;test;Norway
+Ford Mustang - Mach-E LR RWD;10:00;100;test;test;test;test;
+BMW iX3;10:00;100;test;test;test;test;Norway
+VW ID Buzz - 82 kWh;10:00;100;test;test;test;test;
+Volvo C40 - AWD;10:00;100;test;test;test;test;
+VW ID4 - 1st 82 kWh;10:00;100;test;test;test;test;Norway, nice weather
+VW ID4 - 1st GTX 82 kWh;10:00;100;test;test;test;test;Sweden
+Audi e-tron - 55 Black Edition;10:00;100;test;test;test;test;
+Polestar 2 - Performance;10:00;100;test;test;test;test;Sweden
+VW ID3 - 1st 62 kWh;10:00;100;test;test;test;test;Norway
+Nissan Ariya - 87 kWh FWD;10:00;100;test;test;test;test;Wet roads 40 %
+Mercedes EQC - 400;10:00;100;test;test;test;test;Some tailwind
+Volvo XC40 - 69 kWh FWD;10:00;100;test;test;test;test;
+Hongqi E-HS9 - 99 kWh 6 seater;10:00;100;test;test;test;test;
+Mercedes EQB - 350 4Matic;10:00;100;test;test;test;test;
+Nissan Ariya - 63 kWh;10:00;100;test;test;test;test;Wet roads 40 %
+VW ID3 - 55 kWh;10:00;100;test;test;test;test;
+Kia Niro - EV 64 kWh;10:00;100;test;test;test;test;Norway
+Citroen e-C4;10:00;100;test;test;test;test;Norway
+Polestar 2 - SR SM;10:00;100;test;test;test;test;
+Renault Megane E-Tech - 60 kWh;10:00;100;test;test;test;test;
+MG ZS EV - 72 kWh;10:00;100;test;test;test;test;
+BYD Tang;10:00;100;test;test;test;test;
+Mercedes EQA - 350 4Matic;10:00;100;test;test;test;test;
+Nio ES8 - 100 kWh 6 seater;10:00;100;test;test;test;test;
+Cupra Born - 58;10:00;100;test;test;test;test;
+Ford Mustang - Mach-E LR AWD;10:00;100;test;test;test;test;Norway, wet
+Hyundai Kona - 64 kWh;10:00;100;test;test;test;test;
+Xpeng P7 - Performance Wing Edition;10:00;100;test;test;test;test;Wet roads 40 %
+Tesla Model S - P85 MF;10:00;100;test;test;test;test;8 year old car
+Audi e-tron - 50;10:00;100;test;test;test;test;Wet almost all the way
+Hyundai Ioniq - 28 kWh;10:00;100;test;test;test;test;Norway
+Mercedes EQV - 7 seater;10:00;100;test;test;test;test;
+Jaguar I-Pace - EV320;10:00;100;test;test;test;test;Norway, wet
+Volvo XC40 - 78 kWh AWD;10:00;100;test;test;test;test;Norway, wet
+Opel Ampera-e;10:00;100;test;test;test;test;
+Xpeng G3 - 520i;10:00;100;test;test;test;test;Norway
+BMW i3 - 42 kWh;10:00;100;test;test;test;test;Norway, 50/50 wet
+Mercedes EQV - 7 seater;10:00;100;test;test;test;test;Norway, very cold
+Nissan Leaf - 62 kWh;10:00;100;test;test;test;test;
+Hyundai Ioniq - 38 kWh;10:00;100;test;test;test;test;
+Renault Zoe - ZE50;10:00;100;test;test;test;test;Wet 80 % of the route
+MG ZS EV - 44.5 kWh;10:00;100;test;test;test;test;
+Lexus UX - 300e;10:00;100;test;test;test;test;Norway
+VW e-Golf - 35.8 kWh;10:00;100;test;test;test;test;
+Honda e;10:00;100;test;test;test;test;Norway
