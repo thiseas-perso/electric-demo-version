@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import Backdrop from '../Backdrop';
-import ClientOnlyPortal from '../ClientOnlyPortal';
+import Backdrop from '../backdrop';
+import ClientOnlyPortal from '../clientOnlyPortal';
 const Modal = ({ handleClose, children, open }) => {
   if (!open) return null;
   return (

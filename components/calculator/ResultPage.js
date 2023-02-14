@@ -7,7 +7,7 @@ import ResultData from './ResultData';
 const ResultPage = ({ results, checked, worthIt, state }) => {
   return (
     <div
-      className={` min-h-[calc(100vh-48px)] bg-gradient-to-t from-light-primary-start to-light-primary-end`}
+      className={` min-h-[calc(100vh)] bg-gradient-to-t from-light-primary-start to-light-primary-end  dark:from-dark-primary-1 dark:via-dark-primary-1 dark:to-dark-primary-2`}
     >
       <h2 className="text-xl p-2 text-white font-poppins font-extrabold text-center">
         Résultas

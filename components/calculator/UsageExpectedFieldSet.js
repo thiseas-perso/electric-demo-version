@@ -20,11 +20,11 @@ const UsageExpectedFieldSet = ({
         ease: 'easeOut',
       }}
     >
-      <h2 className="text-3xl text-white mb-5 p-4 font-poppins font-bold bg-light-primary-2 text-center">
+      <h2 className="text-3xl text-white  p-4 font-poppins font-bold bg-light-primary-2 text-center dark:bg-black">
         <span className="text-light-primary-4">Kilomètrage</span> annuel
       </h2>
 
-      <div className="flex flex-col px-4 pb-4">
+      <div className="flex flex-col pt-5 px-4 pb-4 bg-white dark:bg-light-primary-2">
         <p className="text-base leading-5 mb-4">
           <Image alt="information" src={infoIcon} className="inline-block " />{' '}
           Si vous ne connaissez pas votre kilomètrage annuel, laissez cette case{' '}

@@ -24,6 +24,12 @@ export async function getStaticProps() {
 }
 
 const Cars = ({ allDataLight, testNames, allData }) => {
+  console.log({
+    allDataLight,
+    testNames,
+    allData,
+  });
+
   const dataByMaker = allDataLight.reduce((acc, cur) => {
     const foundIndex = acc.findIndex((el) => el?.maker === cur.maker);
     if (foundIndex !== -1) {

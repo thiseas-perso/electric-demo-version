@@ -11,14 +11,14 @@ const CarEVFieldSet = ({ state, className, x, changeHandler, errorState }) => {
         ease: 'easeOut',
       }}
     >
-      <h2 className="text-3xl text-white mb-5 p-4 font-poppins font-bold bg-light-primary-2 text-center">
+      <h2 className="text-3xl text-white  p-4 font-poppins font-bold bg-light-primary-2 text-center dark:bg-black">
         Véhicule <span className="text-light-primary-4">électrique</span>
       </h2>
-      <div className="flex flex-col px-4 pb-4">
+      <div className="flex flex-col pt-5 px-4 pb-4 bg-white dark:bg-light-primary-2">
         <label htmlFor="purchaseCost">Prix achat (€):</label>
         <span className="error-msg">{errorState.carDataEV.purchaseCost}</span>
         <input
-          className="mb-4"
+          className="mb-3"
           placeholder="ex: 35000"
           required
           min="0"
@@ -32,7 +32,7 @@ const CarEVFieldSet = ({ state, className, x, changeHandler, errorState }) => {
         <label htmlFor="ecoBonus">Bonus ecologique (€):</label>
         <span className="error-msg">{errorState.carDataEV.ecoBonus}</span>
         <input
-          className="mb-4"
+          className="mb-3"
           placeholder="ex: 5000"
           required
           min="0"
@@ -46,7 +46,7 @@ const CarEVFieldSet = ({ state, className, x, changeHandler, errorState }) => {
         <label htmlFor="consumption">Consomation (kWh/100km):</label>
         <span className="error-msg">{errorState.carDataEV.consumption}</span>
         <input
-          className="mb-4"
+          className="mb-3"
           placeholder="ex: 18"
           required
           min="0"
@@ -60,7 +60,7 @@ const CarEVFieldSet = ({ state, className, x, changeHandler, errorState }) => {
         <label htmlFor="insurance">Assurance (€/an):</label>
         <span className="error-msg">{errorState.carDataEV.insurance}</span>
         <input
-          className="mb-4"
+          className="mb-3"
           placeholder="ex: 650"
           required
           min="0"
@@ -74,7 +74,7 @@ const CarEVFieldSet = ({ state, className, x, changeHandler, errorState }) => {
         <label htmlFor="maintenance">Entretien (€/an):</label>
         <span className="error-msg">{errorState.carDataEV.maintenance}</span>
         <input
-          className="mb-4"
+          className="mb-3"
           placeholder="ex: 600"
           max="10000000"
           required

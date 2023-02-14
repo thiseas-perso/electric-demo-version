@@ -24,10 +24,10 @@ const UsageDataFieldSet = ({
         ease: 'easeOut',
       }}
     >
-      <h2 className="text-3xl text-white mb-5 p-4 font-poppins font-bold bg-light-primary-2 text-center">
+      <h2 className="text-3xl text-white  p-4 font-poppins font-bold bg-light-primary-2 text-center dark:bg-black">
         Vos <span className="text-light-primary-4">trajets</span>
       </h2>
-      <div className="flex flex-col px-4 pb-4">
+      <div className="flex flex-col pt-5 px-4 pb-4 bg-white dark:bg-light-primary-2">
         <label htmlFor="workHomeDistance">
           Distance domicile travail (km):
         </label>

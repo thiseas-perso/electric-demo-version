@@ -29,7 +29,7 @@ const ProgressBar = ({ stepState }) => {
     >
       <div
         id="progress-fill"
-        className={`bg-light-primary-end h-full ${barClassName} ml-auto`}
+        className={`bg-light-primary-end h-full ${barClassName} ml-auto dark:bg-dark-primary-mid`}
       />
     </div>
   );

@@ -8,8 +8,8 @@ const ResultData = ({
   carType,
 }) => {
   return (
-    <div className="border-2  rounded-xl bg-white text-center overflow-hidden">
-      <h3 className="font-bold border-b p-2 bg-light-primary-2 text-white">
+    <div className="border-2  rounded-xl bg-white text-center overflow-hidden dark:bg-light-primary-2">
+      <h3 className="font-bold border-b p-2 bg-light-primary-2 text-white dark:bg-black">
         Cout <span className="text-light-primary-4">{carType}</span>
       </h3>
       <div className="my-4">

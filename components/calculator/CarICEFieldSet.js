@@ -11,11 +11,11 @@ const CarICEFieldSet = ({ state, className, x, changeHandler, errorState }) => {
         ease: 'easeOut',
       }}
     >
-      <h2 className="text-3xl text-white mb-5 p-4 font-poppins font-bold bg-light-primary-2 text-center">
+      <h2 className="text-3xl text-white p-4 font-poppins font-bold bg-light-primary-2 text-center dark:bg-black">
         Véhicule <span className="text-light-primary-4">thérmique</span>
       </h2>
 
-      <div className="flex flex-col px-4 pb-4">
+      <div className="flex flex-col px-4 pb-4 pt-5  bg-white dark:bg-light-primary-2">
         <label htmlFor="purchaseCost">Prix achat (€):</label>
         <span className="error-msg">{errorState.carDataICE.purchaseCost}</span>
         <input
