@@ -9,7 +9,7 @@ const ThousandKM = ({ tests, className }) => {
     <div className={className}>
       <table className="min-w-full border-separate border-spacing-2">
         <caption>
-          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left">
+          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left dark:bg-black">
             1000km
           </h3>
         </caption>

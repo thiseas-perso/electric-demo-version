@@ -10,7 +10,7 @@ const Weight = ({ tests, className }) => {
     <div className={className}>
       <table className="min-w-full border-separate border-spacing-2">
         <caption>
-          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left w-full">
+          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left w-full dark:bg-black">
             Poid
           </h3>
         </caption>

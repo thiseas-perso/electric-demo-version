@@ -32,7 +32,7 @@ const Acceleration = ({ tests, className }) => {
     <div className={className}>
       <table className="min-w-full border-separate border-spacing-2">
         <caption>
-          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left flex items-center gap-x-4">
+          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left flex items-center gap-x-4 dark:bg-black">
             Acceleration
             <button
               className="font-light hover:bg-white/25"
@@ -159,7 +159,7 @@ const Acceleration = ({ tests, className }) => {
                 <th
                   className={`${
                     showDetails
-                      ? 'font-extrabold flex justify-center mt-5 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -178,7 +178,7 @@ const Acceleration = ({ tests, className }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center mt-5 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -197,7 +197,7 @@ const Acceleration = ({ tests, className }) => {
                 <th
                   className={`${
                     showDetails
-                      ? 'font-extrabold flex justify-center mt-5 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -219,7 +219,7 @@ const Acceleration = ({ tests, className }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center mt-5 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -249,7 +249,7 @@ const Acceleration = ({ tests, className }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center mt-5 sm:hidden'
+                      ? 'font-extrabold flex justify-center my-4 sm:hidden'
                       : 'hidden'
                   }`}
                 >
@@ -259,7 +259,7 @@ const Acceleration = ({ tests, className }) => {
                   data-th="Roue arrière"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -268,7 +268,7 @@ const Acceleration = ({ tests, className }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center mt-5 sm:hidden'
+                      ? 'font-extrabold flex justify-center my-4 sm:hidden'
                       : 'hidden'
                   }`}
                 >

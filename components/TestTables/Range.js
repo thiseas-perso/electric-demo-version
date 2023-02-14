@@ -35,7 +35,7 @@ const Range = ({ tests, className }) => {
     <div className={className}>
       <table className="min-w-full border-separate border-spacing-2">
         <caption>
-          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left flex items-center gap-x-4">
+          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left flex items-center gap-x-4 dark:bg-black">
             Autonomie
             <button
               className="font-light hover:bg-white/25"

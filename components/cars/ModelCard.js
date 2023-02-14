@@ -3,7 +3,7 @@ import StudioImage from '../StudioImage';
 
 const ModelCard = ({ maker, id, model, versions }) => {
   return (
-    <li className="border rounded-lg overflow-hidden transition-colors hover:bg-light-primary-3 cursor-pointer">
+    <li className="border rounded-lg overflow-hidden transition-all bg-white/20 dark:bg-black/20 hover:brightness-150 dark:hover:bg-black/50 cursor-pointer hover:bg-white/50">
       <Link href={`/tested-cars/models/${id}`}>
         <StudioImage
           model={model}
@@ -15,7 +15,7 @@ const ModelCard = ({ maker, id, model, versions }) => {
         <h3 className="text-center mb-4 font-extrabold">
           {maker} {model}
         </h3>
-        <p className="text-center bg-light-primary-2 text-white">
+        <p className="text-center py-2 bg-black text-white">
           {versions} version{versions > 1 && 's'} testée{versions > 1 && 's'}
         </p>
       </Link>

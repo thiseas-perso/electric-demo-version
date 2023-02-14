@@ -5,7 +5,7 @@ import closeButton from '../../public/icons/close-button.svg';
 
 import ModelCard from './ModelCard';
 
-const ModelsSection = ({ allDataLight, title, last }) => {
+const ModelsSection = ({ allDataLight, last }) => {
   const [display, setDisplay] = useState(false);
   const [query, setQuery] = useState('');
 
@@ -22,8 +22,13 @@ const ModelsSection = ({ allDataLight, title, last }) => {
 
   return (
     <section>
-      <div className="flex items-center bg-white p-3 gap-3">
-        <h2 className="">{title}</h2>
+      <div className="flex items-center  p-3 gap-3 dark:bg-transparent">
+        <h2
+          onClick={() => setDisplay((prev) => !prev)}
+          className="hover:cursor-pointer"
+        >
+          Tous les modèles testés
+        </h2>
         <button
           className="border-none h-9 m-0 p-0"
           onClick={() => setDisplay((prev) => !prev)}
@@ -41,20 +46,23 @@ const ModelsSection = ({ allDataLight, title, last }) => {
         className={`transition-all duration-150 overflow-hidden flex flex-col items-center`}
         style={{ height: display ? height : '0px' }}
       >
-        <div className="bg-white w-full p-8 flex justify-center">
-          <label htmlFor="filter">Filtrez :</label>
+        <div className=" w-full p-8 flex justify-center dark:bg-transparent">
+          <label className="font-semibold" htmlFor="filter">
+            Filtrer :
+          </label>
           <input
             className="ml-2 w-32"
             id="filter"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             maxLength="20"
+            autoComplete="off"
           />
         </div>
         <ul
-          className={`flex flex-wrap gap-5  bg-white p-3 pb-8 justify-center items-start min-w-full h-fit ${
+          className={`flex flex-wrap gap-5   p-3 pb-8 justify-center items-start min-w-full h-fit ${
             last && 'mb-20'
-          }`}
+          } dark:bg-transparent`}
         >
           {dataFiltered.map((data) => (
             <ModelCard

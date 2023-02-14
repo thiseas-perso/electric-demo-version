@@ -6,7 +6,7 @@ import closeButton from '../../public/icons/close-button.svg';
 import Modal from '../Modal';
 import MakerBtn from './MakerBtn';
 
-const MakerSection = ({ title, last, dataByMaker }) => {
+const MakerSection = ({ last, dataByMaker }) => {
   const [display, setDisplay] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [models, setModels] = useState([]);
@@ -17,8 +17,13 @@ const MakerSection = ({ title, last, dataByMaker }) => {
 
   return (
     <section>
-      <div className="flex items-center bg-white p-3 gap-3">
-        <h2 className="">{title}</h2>
+      <div className="flex items-center  p-3 gap-3 dark:bg-transparent">
+        <h2
+          className="hover:cursor-pointer"
+          onClick={() => setDisplay((prev) => !prev)}
+        >
+          Chercher par marque
+        </h2>
         <button
           className="border-none h-9 m-0 p-0"
           onClick={() => setDisplay((prev) => !prev)}
@@ -37,9 +42,9 @@ const MakerSection = ({ title, last, dataByMaker }) => {
         style={{ height: display ? height : '0px' }}
       >
         <div
-          className={`flex flex-wrap gap-2 flex-grow bg-white p-3 pb-8 justify-center items-start ${
+          className={`flex flex-wrap gap-2 flex-grow  p-3 pb-8 justify-center items-start ${
             last && 'mb-20'
-          }`}
+          } dark:bg-transparent`}
         >
           {dataByMaker.map((data) => (
             <MakerBtn
@@ -62,20 +67,20 @@ const MakerSection = ({ title, last, dataByMaker }) => {
           setMaker();
         }}
       >
-        <div className="bg-gradient-to-bl from-pink-500 via-red-500 to-yellow-500 p-1  overflow-hidden">
-          <div className="bg-light-primary-2 pt-0  overflow-hidden flex flex-col min-w-[200px] font-sans h-full w-full">
+        <div className="bg-gradient-to-bl  rounded-lg from-pink-500 via-red-500 to-yellow-500 p-2  overflow-hidden ">
+          <div className="bg-white dark:bg-light-primary-2 pt-0 rounded-lg overflow-hidden flex flex-col min-w-[200px] font-sans h-full w-full">
             <div className="">
-              <h1 className="text-3xl text-white mb-5 p-4 font-poppins font-bold bg-light-primary-2 text-center">
+              <h1 className="text-3xl dark:text-white mb-5 p-4 font-poppins font-bold dark:bg-light-primary-2 text-center">
                 Les modèles{' '}
                 <span className="text-light-primary-4">{maker}</span>
               </h1>
 
-              <ul className="">
+              <ul className="flex flex-col justify-center items-center">
                 {models.map((el) => (
                   <li key={el.id}>
-                    <div className="border-none rounded-none mb-2 w-full bg-gradient-to-r from-light-primary-start to-light-primary-end p-0 hover:cursor-pointer">
+                    <div className="border-none rounded-lg mb-2 w-fit bg-gradient-to-r from-light-primary-start to-light-primary-end p-0 hover:cursor-pointer">
                       <Link href={`/tested-cars/models/${el.id}`}>
-                        <div className="bg-none transition-colors text-white p-3 hover:bg-white/40">
+                        <div className="bg-none rounded-lg transition-colors text-white p-3 hover:bg-white/40">
                           <span className="font-bold">{el.model}</span>{' '}
                           <span className="italic font-light">
                             ({el.versions} version
@@ -89,10 +94,10 @@ const MakerSection = ({ title, last, dataByMaker }) => {
               </ul>
             </div>
             <button
-              className="rounded-none border-none bg-light-primary-2 text-white mt-4 "
+              className="rounded-none border-none bg-light-primary-2 text-white mt-4 dark:bg-black"
               onClick={() => setModalOpen(false)}
             >
-              Close
+              Fermer
             </button>
           </div>
         </div>
