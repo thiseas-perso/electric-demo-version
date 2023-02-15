@@ -7,48 +7,46 @@ import ResultData from './ResultData';
 const ResultPage = ({ results, checked, worthIt, state }) => {
   return (
     <div
-      className={` min-h-[calc(100vh)] bg-gradient-to-t from-light-primary-start to-light-primary-end  dark:from-dark-primary-1 dark:via-dark-primary-1 dark:to-dark-primary-2`}
+      className={` min-h-[calc(100vh)] flex justify-center bg-gradient-to-t from-light-primary-start to-light-primary-end  dark:from-dark-primary-1 dark:via-dark-primary-1 dark:to-dark-primary-2`}
     >
-      <h2 className="text-xl p-2 text-white font-poppins font-extrabold text-center">
-        Résultas
-      </h2>
-      <div
-        id="results-ctn"
-        className="grid grid-cols-2 gap-x-2 gap-y-5 mx-4 mt-2"
-      >
-        <ResultData
-          carCostAtEnd={results.carICECostAtEndOfPeriod}
-          carType="Thérmique"
-          carCostPerKMAtEnd={results.carICECostPerKmAtEnd}
-          carValueAtEnd={results.carICEValueAtEndOfPeriod}
-          checked={checked}
-        />
-        <ResultData
-          carCostAtEnd={results.carEVCostAtEndOfPeriod}
-          carType="Eléctrique"
-          carCostPerKMAtEnd={results.carEVCostPerKmAtEnd}
-          carValueAtEnd={results.carEVValueAtEndOfPeriod}
-          checked={checked}
-        />
-
-        {worthIt > 1000 && (
-          <ResultMsgNegative
-            durationStudied={state.durationStudied.yearsStudied}
-            worthIt={worthIt}
+      <div className="max-w-3xl">
+        <h2 className="text-xl p-2 text-white font-poppins font-extrabold text-center my-5">
+          Résultas
+        </h2>
+        <div id="results-ctn" className="grid grid-cols-2 gap-5 mx-4 mt-[10vh]">
+          <ResultData
+            carCostAtEnd={results.carICECostAtEndOfPeriod}
+            carType="Thérmique"
+            carCostPerKMAtEnd={results.carICECostPerKmAtEnd}
+            carValueAtEnd={results.carICEValueAtEndOfPeriod}
+            checked={checked}
           />
-        )}
-        {worthIt < -1000 && (
-          <ResultMsgPositive
-            durationStudied={state.durationStudied.yearsStudied}
-            worthIt={worthIt}
+          <ResultData
+            carCostAtEnd={results.carEVCostAtEndOfPeriod}
+            carType="Eléctrique"
+            carCostPerKMAtEnd={results.carEVCostPerKmAtEnd}
+            carValueAtEnd={results.carEVValueAtEndOfPeriod}
+            checked={checked}
           />
-        )}
-        {worthIt > -1000 && worthIt < 1000 && (
-          <ResultMsgNeutral
-            durationStudied={state.durationStudied.yearsStudied}
-            worthIt={worthIt}
-          />
-        )}
+          {worthIt > 1000 && (
+            <ResultMsgNegative
+              durationStudied={state.durationStudied.yearsStudied}
+              worthIt={worthIt}
+            />
+          )}
+          {worthIt < -1000 && (
+            <ResultMsgPositive
+              durationStudied={state.durationStudied.yearsStudied}
+              worthIt={worthIt}
+            />
+          )}
+          {worthIt > -1000 && worthIt < 1000 && (
+            <ResultMsgNeutral
+              durationStudied={state.durationStudied.yearsStudied}
+              worthIt={worthIt}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

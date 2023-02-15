@@ -7,7 +7,7 @@ const NavButtons = ({ stepState, setStepState, setX }) => {
         <button
           className={`${
             stepState > 5 ? 'border-0' : 'border-r'
-          } flex-1 rounded-none border-0 font-normal`}
+          } flex-1 rounded-none border-0 font-normal text-xl py-4`}
           type="button"
           onClick={() => {
             setStepState((prev) => prev - 1), setX(() => -1000);
@@ -20,7 +20,7 @@ const NavButtons = ({ stepState, setStepState, setX }) => {
         <button
           className={`${
             stepState < 1 ? 'border-0' : 'border-l'
-          } flex-1 rounded-none border-0 `}
+          } flex-1 rounded-none border-0 text-xl py-4`}
           type="button"
           onClick={() => {
             setStepState((prev) => prev + 1), setX(() => 1000);

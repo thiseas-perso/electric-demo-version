@@ -12,7 +12,7 @@ const TableHeader = ({ imageSrc, info }) => {
         <div onClick={clickHandler}>{info}</div>
       ) : (
         <Image
-          className="mx-auto"
+          className="mx-auto unselectable"
           src={imageSrc}
           alt={info}
           onClick={clickHandler}

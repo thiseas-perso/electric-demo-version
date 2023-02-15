@@ -10,29 +10,32 @@ const TestsLinks = ({ stringArr, last }) => {
   let height;
   if (contentRef.current) height = `${contentRef.current.scrollHeight}px`;
 
-  // let nameToDisplay = '';
-  // switch (testName) {
-  //   case 'acceleration':
-  //     nameToDisplay = 'Acceleration';
-  //     break;
-  //   case 'banana':
-  //     nameToDisplay = 'Caisses à bananes';
-  //     break;
-  //   case 'braking':
-  //     nameToDisplay = 'Freins';
-  //     break;
-  //   case 'range':
-  //     nameToDisplay = 'Autonomie';
-  //     break;
-  //   case 'thousand':
-  //     nameToDisplay = '1000km';
-  //     break;
-  //   case 'weight':
-  //     nameToDisplay = 'Poid';
-  //     break;
-  //   default:
-  //     nameToDisplay = testName;
-  // }
+  const parseName = (testName) => {
+    let nameToDisplay = '';
+    switch (testName) {
+      case 'acceleration':
+        nameToDisplay = 'Acceleration';
+        break;
+      case 'banana':
+        nameToDisplay = 'Caisses à bananes';
+        break;
+      case 'braking':
+        nameToDisplay = 'Freins';
+        break;
+      case 'range':
+        nameToDisplay = 'Autonomie';
+        break;
+      case 'thousand':
+        nameToDisplay = '1000km';
+        break;
+      case 'weight':
+        nameToDisplay = 'Poid';
+        break;
+      default:
+        nameToDisplay = testName;
+    }
+    return nameToDisplay;
+  };
 
   return (
     <section>
@@ -65,15 +68,18 @@ const TestsLinks = ({ stringArr, last }) => {
             last && 'mb-20'
           } dark:bg-transparent`}
         >
-          {stringArr.map((el) => (
-            <Link
-              className={`m-0 bg-light-primary-2 text-white px-5 py-2 rounded-lg border-none `}
-              key={el}
-              href={`/tested-cars/results/${el}`}
-            >
-              {el}
-            </Link>
-          ))}
+          {stringArr.map((el) => {
+            const testName = parseName(el);
+            return (
+              <Link
+                className={`m-0 bg-light-primary-2 text-white px-5 py-2 rounded-lg border-none `}
+                key={el}
+                href={`/tested-cars/results/${el}`}
+              >
+                {testName}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

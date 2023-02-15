@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { getOneFileData } from '../../../lib/csvParser';
-import { Range } from '../../../components/TestTables';
+import { ThousandKM } from '../../../components/TestTables';
 import Header from '../../../components/header';
 
 export async function getStaticProps() {
-  const data = await getOneFileData('range');
+  const data = await getOneFileData('thousand');
   const sorted = [...data].sort((a, b) => a.Car.localeCompare(b.Car));
 
   return {
@@ -14,7 +14,7 @@ export async function getStaticProps() {
   };
 }
 
-const RangeResults = ({ sorted }) => {
+const ThousandResults = ({ sorted }) => {
   const [query, setQuery] = useState('');
 
   const dataFiltered = sorted.filter((el) =>
@@ -40,7 +40,7 @@ const RangeResults = ({ sorted }) => {
         />
       </div>
       <div className="bg-slate-200 dark:bg-light-primary-2 sm:p-10">
-        <Range
+        <ThousandKM
           tests={dataFiltered}
           fullTest={true}
           className="sm:rounded-xl overflow-x-auto sm:border bg-white dark:bg-transparent"
@@ -50,4 +50,4 @@ const RangeResults = ({ sorted }) => {
   );
 };
 
-export default RangeResults;
+export default ThousandResults;

@@ -8,8 +8,9 @@ import horseImg from '../../public/headers/horse-power.png';
 import versusImg from '../../public/headers/versus.png';
 import calendarImg from '../../public/headers/calendar.png';
 import tiresImg from '../../public/headers/tires.png';
+import carImg from '../../public/headers/car_full.png';
 
-const Acceleration = ({ tests, className }) => {
+const Acceleration = ({ tests, className, fullTest }) => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [btnTxt, setBtnTxt] = useState('détails');
@@ -30,9 +31,9 @@ const Acceleration = ({ tests, className }) => {
 
   return (
     <div className={className}>
-      <table className="min-w-full border-separate border-spacing-2">
+      <table className="min-w-full border-separate border-spacing-2 p-3">
         <caption>
-          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left flex items-center gap-x-4 dark:bg-black">
+          <h3 className="p-3 font-bold bg-light-primary-2 text-white text-left flex items-center gap-x-4 dark:bg-black">
             Acceleration
             <button
               className="font-light hover:bg-white/25"
@@ -44,6 +45,11 @@ const Acceleration = ({ tests, className }) => {
         </caption>
         <thead>
           <tr>
+            {fullTest && (
+              <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
+                <TableHeader info="Voiture" imageSrc={carImg} />
+              </th>
+            )}
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
               <TableHeader info="Motorisation" imageSrc={driveImg} />
             </th>
@@ -122,14 +128,27 @@ const Acceleration = ({ tests, className }) => {
             return (
               <tr
                 key={i}
-                className="even:bg-light-primary-7/50  odd:bg-light-primary-3/50 rounded-3xl m-5 p-5 grid grid-cols-2 sm:table-row"
+                className="odd:bg-light-primary-0  even:text-black even:bg-light-primary-4 text-white dark:even:bg-dark-primary-1  dark:odd:bg-dark-primary-mid dark:text-white rounded-3xl my-5 p-5 grid grid-cols-2 sm:table-row"
               >
+                {fullTest && (
+                  <>
+                    <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                      <TableHeader info="Voiture" imageSrc={carImg} />
+                    </th>
+                    <td
+                      data-th="Voiture"
+                      className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
+                    >
+                      {test.Car}
+                    </td>
+                  </>
+                )}
                 <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
                   <TableHeader info="Motorisation" imageSrc={driveImg} />
                 </th>
                 <td
                   data-th="Motorisation"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Drive}
                 </td>
@@ -139,7 +158,7 @@ const Acceleration = ({ tests, className }) => {
                 </th>
                 <td
                   data-th="0-100 (secondes)"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.ZeroTo100}
                 </td>
@@ -152,7 +171,7 @@ const Acceleration = ({ tests, className }) => {
                 </th>
                 <td
                   data-th="0-100 Spec (secondes)"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.ZeroTo100spec}
                 </td>
@@ -169,7 +188,7 @@ const Acceleration = ({ tests, className }) => {
                   data-th="test VS spec"
                   className={`${
                     showDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -188,7 +207,7 @@ const Acceleration = ({ tests, className }) => {
                   data-th="Date"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -210,7 +229,7 @@ const Acceleration = ({ tests, className }) => {
                   data-th="Hp"
                   className={`${
                     showDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -229,7 +248,7 @@ const Acceleration = ({ tests, className }) => {
                   data-th="Pneux"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -241,7 +260,7 @@ const Acceleration = ({ tests, className }) => {
                 <td
                   data-th="Poid (kg)"
                   className={[
-                    'block my-4 font-semibold before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg ',
+                    'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg ',
                   ]}
                 >
                   {test.Weight}

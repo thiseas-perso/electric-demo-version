@@ -4,18 +4,24 @@ import carRearImg from '../../public/headers/car_rear.png';
 import weightImg from '../../public/headers/weight.png';
 import scaleImg from '../../public/headers/scale.png';
 import batteryImg from '../../public/headers/battery_kwh.png';
+import carImg from '../../public/headers/car_full.png';
 
-const Weight = ({ tests, className }) => {
+const Weight = ({ tests, className, fullTest }) => {
   return (
     <div className={className}>
-      <table className="min-w-full border-separate border-spacing-2">
+      <table className="min-w-full border-separate border-spacing-2 p-3">
         <caption>
-          <h3 className="font-bold bg-light-primary-2 text-white p-2 text-left w-full dark:bg-black">
+          <h3 className="font-bold bg-light-primary-2 text-white p-3 text-left w-full dark:bg-black">
             Poid
           </h3>
         </caption>
         <thead>
           <tr>
+            {fullTest && (
+              <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
+                <TableHeader info="Voiture" imageSrc={carImg} />
+              </th>
+            )}
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
               <TableHeader info="Total (kg)" imageSrc={weightImg} />
             </th>
@@ -39,14 +45,27 @@ const Weight = ({ tests, className }) => {
             return (
               <tr
                 key={i}
-                className="even:bg-light-primary-7/50  odd:bg-light-primary-3/50 rounded-3xl p-5 m-5 grid grid-cols-2 sm:table-row"
+                className="odd:bg-light-primary-0  even:text-black even:bg-light-primary-4 text-white dark:even:bg-dark-primary-1  dark:odd:bg-dark-primary-mid dark:text-white rounded-3xl my-5 p-5 grid grid-cols-2 sm:table-row"
               >
+                {fullTest && (
+                  <>
+                    <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                      <TableHeader info="Voiture" imageSrc={carImg} />
+                    </th>
+                    <td
+                      data-th="Voiture"
+                      className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
+                    >
+                      {test.Car}
+                    </td>
+                  </>
+                )}
                 <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
                   <TableHeader info="Total (kg)" imageSrc={weightImg} />
                 </th>
                 <td
                   data-th="Total (kg)"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Total}
                 </td>
@@ -55,7 +74,7 @@ const Weight = ({ tests, className }) => {
                 </th>
                 <td
                   data-th="Arrière"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Rear}
                 </td>
@@ -64,7 +83,7 @@ const Weight = ({ tests, className }) => {
                 </th>
                 <td
                   data-th="Avant"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Front}
                 </td>
@@ -73,7 +92,7 @@ const Weight = ({ tests, className }) => {
                 </th>
                 <td
                   data-th="Distribution"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Distribution}
                 </td>
@@ -82,7 +101,7 @@ const Weight = ({ tests, className }) => {
                 </th>
                 <td
                   data-th="Batterie"
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Battery}
                 </td>
