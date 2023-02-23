@@ -1,19 +1,27 @@
+import Image from 'next/image';
 import React, { useState } from 'react';
 import TableHeader from '../TableHeader';
-import accImg from '../../public/headers/acc.png';
-import specImg from '../../public/headers/spec.png';
-import driveImg from '../../public/headers/drive.png';
-import weightImg from '../../public/headers/weight.png';
-import horseImg from '../../public/headers/horse-power.png';
-import versusImg from '../../public/headers/versus.png';
-import calendarImg from '../../public/headers/calendar.png';
-import tiresImg from '../../public/headers/tires.png';
-import carImg from '../../public/headers/car_full.png';
+import Modal from '../Modal';
+import { Youtube } from '../Youtube';
+
+const accImg = '/headers/acc.png';
+const specImg = '/headers/spec.png';
+const driveImg = '/headers/drive.png';
+const weightImg = '/headers/weight.png';
+const horseImg = '/headers/horse-power.png';
+const versusImg = '/headers/versus.png';
+const calendarImg = '/headers/calendar.png';
+const tiresImg = '/headers/tires.png';
+const carImg = '/headers/car_full.png';
+const youtubeImg = '/headers/youtube.png';
+const youtubeDarkImg = '/headers/youtube_dark.png';
 
 const Acceleration = ({ tests, className, fullTest }) => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [btnTxt, setBtnTxt] = useState('détails');
+  const [modalOpen, setModalOpen] = useState(false);
+  const [embedId, setEmbedId] = useState('');
 
   const clickHandler = () => {
     if (!showDetails && !showMoreDetails) {
@@ -34,7 +42,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
       <table className="min-w-full border-separate border-spacing-2 p-3">
         <caption>
           <h3 className="p-3 font-bold bg-light-primary-2 text-white text-left flex items-center gap-x-4 dark:bg-black">
-            Acceleration
+            Accélération
             <button
               className="font-light hover:bg-white/25"
               onClick={clickHandler}
@@ -55,12 +63,12 @@ const Acceleration = ({ tests, className, fullTest }) => {
             </th>
 
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
-              <TableHeader info="Acceleration (secondes)" imageSrc={accImg} />
+              <TableHeader info="Accélération (secondes)" imageSrc={accImg} />
             </th>
 
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
               <TableHeader
-                info="Acceleration spec (secondes)"
+                info="Accélération spec (secondes)"
                 imageSrc={specImg}
               />
             </th>
@@ -101,7 +109,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
               <TableHeader info="Pneux" imageSrc={tiresImg} />
             </th>
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
-              <TableHeader info="Poid (kg)" imageSrc={weightImg} />
+              <TableHeader info="Poids (kg)" imageSrc={weightImg} />
             </th>
             <th
               className={`${
@@ -121,6 +129,9 @@ const Acceleration = ({ tests, className, fullTest }) => {
             >
               Roue avant
             </th>
+            <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
+              <TableHeader info="Vidéo" imageSrc={youtubeImg} />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -132,38 +143,38 @@ const Acceleration = ({ tests, className, fullTest }) => {
               >
                 {fullTest && (
                   <>
-                    <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                    <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                       <TableHeader info="Voiture" imageSrc={carImg} />
                     </th>
                     <td
                       data-th="Voiture"
-                      className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
+                      className="block my-2 font-extrabold sm:table-cell sm:p-2 sm:rounded-lg "
                     >
                       {test.Car}
                     </td>
                   </>
                 )}
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader info="Motorisation" imageSrc={driveImg} />
                 </th>
                 <td
                   data-th="Motorisation"
-                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.Drive}
                 </td>
 
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader info="0-100km/h (secondes)" imageSrc={accImg} />
                 </th>
                 <td
                   data-th="0-100 (secondes)"
-                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.ZeroTo100}
                 </td>
 
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
                     info="0-100 spec. (secondes)"
                     imageSrc={specImg}
@@ -171,14 +182,14 @@ const Acceleration = ({ tests, className, fullTest }) => {
                 </th>
                 <td
                   data-th="0-100 Spec (secondes)"
-                  className="block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg "
                 >
                   {test.ZeroTo100spec}
                 </td>
                 <th
                   className={`${
                     showDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -188,7 +199,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                   data-th="test VS spec"
                   className={`${
                     showDetails
-                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -197,7 +208,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -207,7 +218,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                   data-th="Date"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -216,7 +227,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -229,7 +240,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                   data-th="Hp"
                   className={`${
                     showDetails
-                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -238,7 +249,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -248,19 +259,19 @@ const Acceleration = ({ tests, className, fullTest }) => {
                   data-th="Pneux"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
                   {test.Tires}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
-                  <TableHeader info="Poid (kg)" imageSrc={weightImg} />
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
+                  <TableHeader info="Poids (kg)" imageSrc={weightImg} />
                 </th>
                 <td
-                  data-th="Poid (kg)"
+                  data-th="Poids (kg)"
                   className={[
-                    'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg ',
+                    'block my-2 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg ',
                   ]}
                 >
                   {test.Weight}
@@ -268,7 +279,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden'
                       : 'hidden'
                   }`}
                 >
@@ -278,7 +289,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                   data-th="Roue arrière"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold   sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -287,7 +298,7 @@ const Acceleration = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden'
                       : 'hidden'
                   }`}
                 >
@@ -297,17 +308,55 @@ const Acceleration = ({ tests, className, fullTest }) => {
                   data-th="Roue avant"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
                   {test.WheelFront}
+                </td>
+                <th className="font-extrabold flex justify-center items-center my-2 sm:hidden hover:cursor-pointer">
+                  <TableHeader info="Vidéo" imageSrc={youtubeDarkImg} />
+                </th>
+                <td
+                  data-th="Vidéo"
+                  className="block my-2 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg"
+                >
+                  {test.Youtube ? (
+                    <button
+                      onClick={() => {
+                        setModalOpen(true);
+                        setEmbedId(test.Youtube);
+                      }}
+                      className="flex relative p-0 overflow-hidden mx-auto hover:brightness-150 transition-all"
+                    >
+                      <span className="sr-only">watch video</span>
+                      <Image
+                        width="120"
+                        height="90"
+                        alt=""
+                        src={`https://img.youtube.com/vi/${test.Youtube}/mqdefault.jpg`}
+                      />
+                    </button>
+                  ) : (
+                    '-'
+                  )}
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <Modal
+        open={modalOpen}
+        handleClose={() => {
+          setModalOpen(false);
+          setEmbedId('');
+        }}
+      >
+        <div className="w-[100vw] lg:w-[512px] relative h-0 pb-[56.25%] bg-black">
+          <Youtube embedId={embedId} />
+        </div>
+      </Modal>
     </div>
   );
 };

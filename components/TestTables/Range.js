@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+
 import TableHeader from '../TableHeader';
-import kmhImg from '../../public/headers/kmh.png';
-import batteryImg from '../../public/headers/battery_kwh.png';
-import range100Img from '../../public/headers/range_100.png';
-import range80Img from '../../public/headers/range_80.png';
-import charge80Img from '../../public/headers/charge_80.png';
-import chargekmhImg from '../../public/headers/charge_kmh.png';
-import consumptionImg from '../../public/headers/consumption.png';
-import tempImg from '../../public/headers/temp.png';
-import roadImg from '../../public/headers/road.png';
-import seasonImg from '../../public/headers/season.png';
-import tiresImg from '../../public/headers/tires.png';
-import carImg from '../../public/headers/car_full.png';
+
+const kmhImg = '/headers/kmh.png';
+const batteryImg = '/headers/battery_kwh.png';
+const range100Img = '/headers/range_100.png';
+const range100DarkImg = '/headers/range_100_dark.png';
+const range80Img = '/headers/range_80.png';
+const range80DarkImg = '/headers/range_80_dark.png';
+const charge80Img = '/headers/charge_80.png';
+const charge80DarkImg = '/headers/charge_80_dark.png';
+const chargekmhImg = '/headers/charge_kmh.png';
+const chargekmhDarkImg = '/headers/charge_kmh_dark.png';
+const consumptionImg = '/headers/consumption.png';
+const tempImg = '/headers/temp.png';
+const roadImg = '/headers/road.png';
+const seasonImg = '/headers/season.png';
+const tiresImg = '/headers/tires.png';
+const carImg = '/headers/car_full.png';
 
 const Range = ({ tests, className, fullTest }) => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
@@ -75,24 +81,28 @@ const Range = ({ tests, className, fullTest }) => {
               <TableHeader
                 info="Autonomie 100% à 0% (km)"
                 imageSrc={range100Img}
+                imageDarkSrc={range100DarkImg}
               />
             </th>
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
               <TableHeader
                 info="Autonomie 80% à 5% (km)"
                 imageSrc={range80Img}
+                imageDarkSrc={range80DarkImg}
               />
             </th>
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
               <TableHeader
-                info="Temps de charge 80% à 5% (minutes)"
+                info="Temps de charge 5% à 80%(minutes)"
                 imageSrc={charge80Img}
+                imageDarkSrc={charge80DarkImg}
               />
             </th>
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
               <TableHeader
                 info="Km chargés par heure (0 à 75%)"
                 imageSrc={chargekmhImg}
+                imageDarkSrc={chargekmhDarkImg}
               />
             </th>
             <th className="absolute top-[-9999px] left-[-9999px] sm:static sm:top-0  hover:cursor-pointer">
@@ -154,35 +164,35 @@ const Range = ({ tests, className, fullTest }) => {
               >
                 {fullTest && (
                   <>
-                    <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                    <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                       <TableHeader info="Voiture" imageSrc={carImg} />
                     </th>
                     <td
                       data-th="Voiture"
-                      className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                      className="block my-2 font-extrabold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
                     >
                       {test.Car}
                     </td>
                   </>
                 )}
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader info="Km/h" imageSrc={kmhImg} />
                 </th>
 
                 <td
-                  className="block my-4  sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2  sm:table-cell sm:p-2 sm:rounded-lg "
                   data-th="Vitesse (km/h)"
                 >
                   {test.Speed}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
                     info="Capacitée réelle (kWh)"
                     imageSrc={batteryImg}
                   />
                 </th>
                 <td
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
                   data-th="Capacitée réelle (kWh)"
                 >
                   {Number(test.Capacity.replace(',', '.')).toFixed(0)}
@@ -190,7 +200,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -199,69 +209,73 @@ const Range = ({ tests, className, fullTest }) => {
                 <td
                   className={`${
                     showDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                   data-th="Température (°C)"
                 >
                   {test.Temp}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
                     info="Autonomie (100% à 0%)"
                     imageSrc={range100Img}
+                    imageDarkSrc={range100DarkImg}
                   />
                 </th>
                 <td
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
                   data-th="Autonomie (100% à 0%)"
                 >
-                  {test.Km}
+                  {test.Range100}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
                     info="Autonomie 80% à 5% (km)"
                     imageSrc={range80Img}
+                    imageDarkSrc={range80DarkImg}
                   />
                 </th>
                 <td
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
                   data-th="Autonomie 80% à 5% (km)"
                 >
                   {test.Range75}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
-                    info="Temps de charge 80% à 5% (minutes)"
+                    info="Temps de charge 5% à 80%(minutes)"
                     imageSrc={charge80Img}
+                    imageDarkSrc={charge80DarkImg}
                   />
                 </th>
                 <td
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
-                  data-th="Temps de charge 80% à 5% (minutes)"
+                  className="block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  data-th="Temps de charge 5% à 80%(minutes)"
                 >
                   {test.ChargingTime75}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
                     info="Km chargés par heure (0 à 75%)"
                     imageSrc={chargekmhImg}
+                    imageDarkSrc={chargekmhDarkImg}
                   />
                 </th>
                 <td
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
                   data-th="Km chargés par heure (0 à 75%)"
                 >
                   {test.KmPerH75}
                 </td>
-                <th className="font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer">
+                <th className="font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer">
                   <TableHeader
                     info="Consomation (kWh/100km)"
                     imageSrc={consumptionImg}
                   />
                 </th>
                 <td
-                  className="block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
+                  className="block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg "
                   data-th="Consomation (kWh/100km)"
                 >
                   {(Number(test.WhPerKm) / 10).toFixed(1)}
@@ -269,7 +283,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -278,7 +292,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <td
                   className={`${
                     showMoreDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                   data-th="Surface"
@@ -288,7 +302,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -297,7 +311,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <td
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                   data-th="Saison"
@@ -307,7 +321,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <th
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'font-extrabold flex justify-center my-4 sm:hidden hover:cursor-pointer'
+                      ? 'font-extrabold flex justify-center my-2 sm:hidden hover:cursor-pointer'
                       : 'hidden'
                   }`}
                 >
@@ -316,7 +330,7 @@ const Range = ({ tests, className, fullTest }) => {
                 <td
                   className={`${
                     showMoreDetails
-                      ? 'block my-4 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  before:font-normal before:italic before:block sm:before:content-none sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                   data-th="Pneux"
@@ -336,7 +350,7 @@ const Range = ({ tests, className, fullTest }) => {
                   data-th="Roue arrière"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >
@@ -355,7 +369,7 @@ const Range = ({ tests, className, fullTest }) => {
                   data-th="Roue avant"
                   className={`${
                     showDetails && showMoreDetails
-                      ? 'block my-4 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
+                      ? 'block my-2 font-semibold  sm:table-cell sm:p-2 sm:rounded-lg '
                       : 'hidden'
                   }`}
                 >

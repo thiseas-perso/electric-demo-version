@@ -3,12 +3,12 @@ import { getAllDataLight, getAllTestNames } from '../../lib/csvParser';
 import MakerSection from '../../components/cars/MakerSection';
 import ModelsSection from '../../components/cars/ModelsSection';
 import CustomHead from '../../components/customHead';
-import Header from '../../components/header';
+
 import TestsLinks from '../../components/cars/TestsLinks';
+import TestInfo from '../../components/TestInfo';
 
 export async function getStaticProps() {
   const allDataLight = await getAllDataLight();
-  // const allData = await getAllData();
   const testNames = getAllTestNames();
 
   return {
@@ -37,17 +37,29 @@ const Cars = ({ allDataLight, testNames }) => {
   return (
     <>
       <CustomHead title="SOME TITLE" description="some description" />
-      <Header className="flex items-center h-14 bg-light-primary-2 dark:bg-transparent" />
-      <div className="min-h-[calc(100vh-54px)]">
-        <h1
-          aria-label="Tous les tests"
-          className="text-xl p-2 text-white font-poppins font-extrabold text-center"
-        >
-          Tous les tests
-        </h1>
-        <MakerSection dataByMaker={dataByMaker} />
-        <TestsLinks stringArr={testNames} />
-        <ModelsSection allDataLight={allDataLight} last={true} />
+      <div className="min-h-screenNoNav flex flex-col items-center max-w-4xl mx-auto">
+        <div className="flex flex-col gap-8 mt-[1vh] sm:mt-[10vh]">
+          <div className="bg-white dark:bg-light-primary-2 rounded-none sm:rounded-2xl overflow-hidden shadow-lg">
+            <h1
+              aria-label="Tous les tests"
+              className="text-xl px-8 py-4 text-white bg-black font-poppins font-extrabold text-center"
+            >
+              Tous les tests
+            </h1>
+            <p className="text-lg leading-7 p-8">
+              Tous les résultats que vous pouvez trouver sont fournis par{' '}
+              <strong>Björn Nyland</strong>, YouTubeur professionnel depuis
+              2018, qui teste pratiquement toutes les voitures électriques qui
+              existent.
+            </p>
+          </div>
+          <TestInfo />
+          <div className="flex flex-col shadow-lg rounded-none sm:rounded-2xl">
+            <MakerSection dataByMaker={dataByMaker} />
+            <TestsLinks stringArr={testNames} />
+            <ModelsSection allDataLight={allDataLight} last={true} />
+          </div>
+        </div>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ const ResultData = ({
   carValueAtEnd,
   checked,
   carType,
+  energyCostPerYear,
 }) => {
   return (
     <div className="border-2  rounded-xl bg-white text-center overflow-hidden dark:bg-light-primary-2">
@@ -15,6 +16,11 @@ const ResultData = ({
       <div className="my-4">
         <h4>Cout total :</h4>
         <p className="font-bold">{carCostAtEnd} €</p>
+        <h4>
+          Cout {carType === 'Thermique' ? 'des carburants' : 'des recharges'}{' '}
+          par an:
+        </h4>
+        <p className="font-bold">{energyCostPerYear} €</p>
         <h4>Cout au km</h4>
         <p className="font-bold">{carCostPerKMAtEnd} €</p>
         {checked && (

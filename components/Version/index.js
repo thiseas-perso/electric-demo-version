@@ -1,8 +1,5 @@
-import Image from 'next/image';
 import React, { useState } from 'react';
 import VersionsTests from '../versionTests';
-import arrowButton from '../../public/icons/arrow-button.svg';
-import closeButton from '../../public/icons/close-button.svg';
 
 const Version = ({ version, testNames, filters }) => {
   const [display, setDisplay] = useState(false);
@@ -18,20 +15,20 @@ const Version = ({ version, testNames, filters }) => {
     <div className="pt-2 pb-2">
       <div className="flex items-center gap-x-4">
         <h2
-          className="hover:cursor-pointer"
           onClick={() => setDisplay((prev) => !prev)}
+          className="hover:cursor-pointer"
         >
           {version.version}
-        </h2>{' '}
+        </h2>
         <button
-          className="border-none h-9 m-0 p-0"
           onClick={() => setDisplay((prev) => !prev)}
+          className={`w-6 h-6 m-0 p-0 ${
+            display
+              ? "bg-[url('/icons/close-button.svg')] dark:bg-[url('/icons/close-button-dark.svg')]"
+              : "bg-[url('/icons/arrow-button.svg')] dark:bg-[url('/icons/arrow-button-dark.svg')]"
+          } bg-center bg-contain border-none bg-no-repeat`}
         >
-          <Image
-            src={display ? closeButton : arrowButton}
-            alt="click to display brands"
-            className="rotate-180 unselectable w-6"
-          />
+          <span className="sr-only">Test results</span>
         </button>
       </div>
       {display && (

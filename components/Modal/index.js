@@ -2,11 +2,15 @@ import Backdrop from '../backdrop';
 import ClientOnlyPortal from '../clientOnlyPortal';
 const Modal = ({ handleClose, children, open }) => {
   if (!open) return null;
+  const yOffset = window.pageYOffset;
+  console.log(yOffset);
   return (
     <ClientOnlyPortal selector="#modal">
       <Backdrop onClick={handleClose} />
-      {/* <div className="fixed top-[50%] translate-y-[-50%] left-[50%]  translate-x-[-50%] z-20"> */}
-      <div className="absolute top-[40%] translate-y-[-50%] left-[50%]  translate-x-[-50%] min-w-[290px]  z-20">
+      <div
+        style={{ top: `calc(40vh + ${yOffset}px)` }}
+        className={`absolute translate-y-[-50%] left-[50%]  translate-x-[-50%] min-w-[290px]  z-20`}
+      >
         {children}
       </div>
     </ClientOnlyPortal>

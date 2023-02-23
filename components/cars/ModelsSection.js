@@ -21,23 +21,20 @@ const ModelsSection = ({ allDataLight, last }) => {
   );
 
   return (
-    <section>
-      <div className="flex items-center  p-3 gap-3 dark:bg-transparent">
-        <h2
-          onClick={() => setDisplay((prev) => !prev)}
-          className="hover:cursor-pointer"
-        >
-          Tous les modèles testés
-        </h2>
+    <section className="flex flex-col items-center">
+      <div
+        className="flex items-center hover:cursor-pointer p-3 gap-3 dark:bg-transparent"
+        onClick={() => setDisplay((prev) => !prev)}
+      >
+        <h2>Tous les modèles testés</h2>
         <button
-          className="border-none h-9 m-0 p-0"
-          onClick={() => setDisplay((prev) => !prev)}
+          className={`w-8 h-8 m-0 p-0 ${
+            display
+              ? "bg-[url('/icons/close-button.svg')] dark:bg-[url('/icons/close-button-dark.svg')]"
+              : "bg-[url('/icons/arrow-button.svg')] dark:bg-[url('/icons/arrow-button-dark.svg')]"
+          } bg-center bg-contain border-none bg-no-repeat`}
         >
-          <Image
-            src={display ? closeButton : arrowButton}
-            alt="click to display models"
-            className="rotate-180 unselectable"
-          />
+          <span className="sr-only">Tous les modèles testés</span>
         </button>
       </div>
 
@@ -47,16 +44,21 @@ const ModelsSection = ({ allDataLight, last }) => {
         style={{ height: display ? height : '0px' }}
       >
         <div className=" w-full p-8 flex justify-center dark:bg-transparent">
-          <label className="font-semibold" htmlFor="filter">
-            Filtrer :
-          </label>
+          <label className="sr-only">Chercher une voiture</label>
+          <span className="sr-only">Chercher une voiture</span>
+
           <input
-            className="ml-2 w-32"
+            className="ml-2 pl-8 w-56 bg-[url('/icons/search.png')] bg-no-repeat bg-contain"
             id="filter"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            maxLength="20"
+            maxLength="30"
             autoComplete="off"
+            placeholder="Chercher une voiture..."
+            style={{
+              backgroundSize: '16px 16px',
+              backgroundPosition: 'left 8px center',
+            }}
           />
         </div>
         <ul

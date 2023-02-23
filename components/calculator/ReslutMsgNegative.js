@@ -7,7 +7,7 @@ const ResultMsgNegative = ({ worthIt, durationStudied }) => {
       <div className="p-4 ">
         <p>
           Le véhicule éléctrique vous coutera{' '}
-          <b>{Math.abs(worthIt)}€ plus cher</b> que le véhicule thérmique au
+          <b>{Math.abs(worthIt)}€ plus cher</b> que le véhicule thermique au
           bout de la periode étudiée ({durationStudied} ans)!
         </p>
       </div>

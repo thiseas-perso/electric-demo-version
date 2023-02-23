@@ -1,253 +1,50 @@
-import { useEffect, useState } from 'react';
-
-import { CarEVFieldSet } from '../../components/calculator';
-import { CarICEFieldSet } from '../../components/calculator';
-import { DurationFieldSet } from '../../components/calculator';
-import { EnergyDataFieldSet } from '../../components/calculator';
-import { UsageDataFieldSet } from '../../components/calculator';
-import { UsageExpectedFieldSet } from '../../components/calculator';
-import ErrorMessage from '../../components/calculator/ErrorMessage';
-import {
-  initialResultsState,
-  initialState,
-  initialStateErrors,
-} from '../../components/calculator/initialStates';
-import NavButtons from '../../components/calculator/NavButtons';
-import ProgressBar from '../../components/calculator/ProgressBar';
-import ResultPage from '../../components/calculator/ResultPage';
-import SubmitPage from '../../components/calculator/SubmitPage';
+import Link from 'next/link';
 import CustomHead from '../../components/customHead';
-import Header from '../../components/header';
-import calculator from '../../helpers/calculator';
 
 const Calculator = () => {
-  const [state, setState] = useState(initialState);
-  const [errorState, setErrorState] = useState(initialStateErrors);
-  const [errorCount, setErrorCount] = useState(0);
-  const [stepState, setStepState] = useState(0);
-  const [x, setX] = useState(0);
-  const [results, setResults] = useState(initialResultsState);
-  const [worthIt, setWorthIt] = useState(
-    results.carEVCostAtEndOfPeriod - results.carICECostAtEndOfPeriod
-  );
-  const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    if (checked) {
-      setWorthIt(
-        results.carEVCostAtEndOfPeriod -
-          results.carEVValueAtEndOfPeriod -
-          (results.carICECostAtEndOfPeriod - results.carICEValueAtEndOfPeriod)
-      );
-    } else {
-      setWorthIt(
-        results.carEVCostAtEndOfPeriod - results.carICECostAtEndOfPeriod
-      );
-    }
-  }, [
-    results.carEVCostAtEndOfPeriod,
-    results.carICECostAtEndOfPeriod,
-    checked,
-    results.carEVValueAtEndOfPeriod,
-    results.carICEValueAtEndOfPeriod,
-  ]);
-
-  const convertDataToNumbers = (obj) => {
-    const newObj = {};
-    for (const key in obj) {
-      const element = obj[key];
-      if (typeof element === 'object') {
-        newObj[key] = convertDataToNumbers(element);
-      } else {
-        newObj[key] = Number(Math.abs(Number(element)).toFixed(3));
-      }
-    }
-    return newObj;
-  };
-  const checkValuesEntered = (obj) => {
-    let errors = 0;
-    for (const outerKey in obj) {
-      const element = obj[outerKey];
-      if (typeof element === 'object' && !outerKey.startsWith('usage')) {
-        for (const innerKey in element) {
-          if (!element[innerKey].trim().length) {
-            errors += 1;
-            setErrorState((prev) => ({
-              ...prev,
-              [outerKey]: {
-                ...prev[outerKey],
-                [innerKey]: '*Ce champ est obligatoire',
-              },
-            }));
-          }
-        }
-      }
-    }
-
-    if (!obj.usageExpected.totalKMPerY.trim().length) {
-      for (const key in obj.usageData) {
-        if (!obj.usageData[key].trim().length) {
-          errors += 1;
-          setErrorState((prev) => ({
-            ...prev,
-            usageData: {
-              ...prev.usageData,
-              [key]:
-                "*Vous n'avez pas rentré de KM annuel, ce champ est donc obligatoir",
-            },
-          }));
-        }
-      }
-    }
-    return errors;
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const height = window.innerHeight;
-    const errors = checkValuesEntered(state);
-    if (!errors) {
-      const convertedInputToNumbers = convertDataToNumbers(state);
-      console.log(calculator(convertedInputToNumbers));
-      setResults(() => calculator(convertedInputToNumbers));
-      window.scrollBy({ top: height, behavior: 'smooth' });
-    } else {
-      setErrorCount(errors);
-      setTimeout(() => {
-        setErrorCount(0);
-      }, 4000);
-    }
-  };
-
-  const changeHandler = (e, objName, fieldName) => {
-    if (!e.target.value.trim().length && !objName.startsWith('usage')) {
-      setErrorState((prev) => ({
-        ...prev,
-        [objName]: {
-          ...prev[objName],
-          [fieldName]: '*Ce champ est obligatoire',
-        },
-      }));
-    } else {
-      setErrorState((prev) => ({
-        ...prev,
-        [objName]: {
-          ...prev[objName],
-          [fieldName]: '',
-        },
-      }));
-    }
-    setState((prev) => ({
-      ...prev,
-      [objName]: {
-        ...prev[objName],
-        [fieldName]: e.target.value,
-      },
-    }));
-  };
-
   return (
     <>
       <CustomHead title="SOME TITLE" description="some description" />
-      <Header className="flex items-center h-14 bg-light-primary-2 dark:bg-transparent" />
-      <div className="flex flex-col flex-grow justify-between min-h-[calc(100vh-56px)]">
-        <ProgressBar stepState={stepState} />
-        <h1
-          aria-label="Calculateur éléctro-compatibilité"
-          className="text-xl p-2 text-white font-poppins font-extrabold text-center"
-        ></h1>
-        <form
-          autoComplete="off"
-          className=" text-lg flex flex-col flex-grow overflow-x-hidden sm:items-center mt-[5vh] sm:mt-[10vh]"
-        >
-          {stepState === 0 && (
-            <CarEVFieldSet
-              x={x}
-              state={state}
-              errorState={errorState}
-              className="bg-white overflow-hidden  min-w-[275px] max-w-2xl  dark:bg-black "
-              changeHandler={changeHandler}
-            />
-          )}
-          {stepState === 1 && (
-            <CarICEFieldSet
-              x={x}
-              state={state}
-              errorState={errorState}
-              className="bg-white overflow-hidden  min-w-[275px] max-w-2xl dark:bg-black"
-              changeHandler={changeHandler}
-            />
-          )}
-          {stepState === 2 && (
-            <EnergyDataFieldSet
-              x={x}
-              state={state}
-              errorState={errorState}
-              changeHandler={changeHandler}
-              className="bg-white overflow-hidden  min-w-[275px] max-w-2xl dark:bg-black"
-            />
-          )}
-          {stepState === 3 && (
-            <UsageExpectedFieldSet
-              x={x}
-              state={state}
-              errorState={errorState}
-              changeHandler={changeHandler}
-              className="bg-white overflow-hidden  min-w-[275px] max-w-2xl dark:bg-black"
-            />
-          )}
-          {stepState === 4 && (
-            <UsageDataFieldSet
-              x={x}
-              state={state}
-              errorState={errorState}
-              changeHandler={changeHandler}
-              className="bg-white overflow-hidden  min-w-[275px] max-w-2xl dark:bg-black"
-            />
-          )}
 
-          {stepState === 5 && (
-            <DurationFieldSet
-              x={x}
-              state={state}
-              errorState={errorState}
-              changeHandler={changeHandler}
-              className="bg-white overflow-hidden  min-w-[275px] max-w-2xl dark:bg-black"
-            />
-          )}
-          {stepState === 6 && errorCount > 0 ? (
-            <>
-              <ErrorMessage />
-              <SubmitPage
-                submitHandler={submitHandler}
-                checked={checked}
-                setChecked={setChecked}
-                errorCount={errorCount}
-              />
-            </>
-          ) : stepState === 6 ? (
-            <SubmitPage
-              submitHandler={submitHandler}
-              checked={checked}
-              setChecked={setChecked}
-              errorCount={errorCount}
-            />
-          ) : null}
-        </form>
-        <NavButtons
-          stepState={stepState}
-          setStepState={setStepState}
-          setX={setX}
-        />
+      <div className="flex flex-col flex-grow min-h-screenNoNav items-center">
+        <div className="flex flex-col bg-white dark:bg-light-primary-2 max-w-2xl mt-[1vh] sm:mt-[10vh] shadow-2xl rounded-none sm:rounded-2xl overflow-hidden">
+          <h1
+            aria-label="L'éléctro-compatibilité"
+            className="text-xl p-4 font-poppins font-extrabold text-center bg-black text-white"
+          >
+            L&apos;éléctro-compatibilité
+          </h1>
+          <div className="flex flex-col gap-4 text-lg p-4">
+            <p className="indent-4">
+              Le calculateur suivant permet de comparer le{' '}
+              <strong className="font-bold"> coût de possession </strong>
+              d&apos;une voiture électrique (VE) et d&apos;une voiture thermique
+              (VT), y compris les{' '}
+              <strong className="font-bold">coûts d&apos;achat</strong> et
+              <strong className="font-bold"> d&apos;usage</strong> sur la durée
+              de vie de la voiture.
+            </p>
+            <p className="indent-4">
+              Selon le nombre de kilomètres que vous parcourez en une année et
+              le prix d&apos;achat d&apos;une VE, il peut être avantageux de
+              vendre votre VT et de passer à l&apos;électrique. Ceci peut vous
+              permettre d&apos;<strong className="font-bold">économiser</strong>{' '}
+              sur les coûts de carburant et de réduire les émissions de gaz à
+              effet de serre.
+            </p>
+            <p className="indent-4">
+              Découvrez dès maintenant votre compatibilité électrique en
+              utilisant le calculateur !
+            </p>
+            <Link
+              className="ml-auto bg-light-primary-4 px-6 py-3 rounded-xl font-bold hover:bg-light-primary-5 transition-colors dark:bg-dark-primary-1 dark:hover:bg-dark-primary-0"
+              href={'/calculator/form'}
+            >
+              Go!
+            </Link>
+          </div>
+        </div>
       </div>
-      {stepState === 6 && (
-        <ResultPage
-          results={results}
-          checked={checked}
-          worthIt={worthIt}
-          state={state}
-        />
-      )}
     </>
   );
 };

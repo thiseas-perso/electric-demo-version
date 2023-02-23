@@ -10,6 +10,19 @@ module.exports = {
   //   preflight: false,
   // },
   theme: {
+    height: (theme) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      full: '100%',
+      screen: 'calc(var(--vh) * 100)',
+    }),
+    minHeight: (theme) => ({
+      0: '0',
+      ...theme('spacing'),
+      full: '100%',
+      screen: 'calc(var(--vh) * 100)',
+      screenNoNav: 'calc(var(--vh, 1vh) * 100 - 56px)',
+    }),
     extend: {
       colors: {
         'light-primary-0': '#fe4091',
